@@ -8,4 +8,5 @@
     <string name="Tipoutputtext">Tip ammount:</string>
     <string name="YouOwe_Text">Ammount to Pay:</string>
     <string name="Calculatebutton">Calculate</string>
+    <string name="SeekbarDisplay"></string>
 </resources>

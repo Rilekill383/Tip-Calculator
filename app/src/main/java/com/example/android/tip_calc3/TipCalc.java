@@ -16,6 +16,7 @@ public class TipCalc extends AppCompatActivity {
     private EditText Party_input;
     private SeekBar seekBar;
     private CheckBox Splitbill_checkbox;
+    private CheckBoxlistener listenCheckbox;
     private EditText Tip_output;
     private EditText Total_output;
     private Button Calculatebutton;
@@ -25,6 +26,8 @@ public class TipCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip_calc);
 
+        listenCheckbox = new CheckBoxlistener();
+
         Bill_input = findViewById(R.id.BillAmmo_input);
         Party_input = findViewById(R.id.PartySize_input);
         seekBar = findViewById(R.id.seekbar);
@@ -32,84 +35,26 @@ public class TipCalc extends AppCompatActivity {
         Tip_output = findViewById(R.id.TipAmmo_output);
         Total_output = findViewById(R.id.Total_payment_output);
         Calculatebutton = findViewById(R.id.Calculatebutton);
+
     }
 
-    public void convert(View v) {
-        String Bill_input = Bill_input.getText().toString();
-        double input =Double.parseDouble(input);
-        String Party_input = Party_input.getText().toString();
-        double input =Double.parseDouble(input);
-        double Tip_output = Float.parseFloat(input);
-        double Total_output = (fahTemp-32.0)*5.0/9.0;
-        celsius.setText(celTemp+””);
-    }
+    public void onClick(View v){
 
 
+        double Bill = Double.parseDouble(Bill_input.getText().toString());
+        double Party = Double.parseDouble(Party_input.getText().toString());
 
+        if(Splitbill_checkbox.isChecked()) {
 
+            double Tip_output = ((Bill_input * seekBar)/Party_input);
+            double Total_output = ((Bill_input / Party_input)+Tip_output);
+        } else {
 
-
-
-    private class BoxListener implements OnClickListener {
-        public void onClick(View v) {
-            if(Splitbill_checkbox.isChecked()) {
-                messageDisplay.setText(“Checked!”);
-            } else {
-                messageDisplay.setText(“Not checked.”);
-            }
+            double Tip_output = (Bill_input * seekBar);
+            double Total_output = (Bill_input*(1.0 + seekBar));
         }
-
-
-
-
-
-
+        Tip_output.setText(Tip_output +"");
+        Total_output.setText(Total_output +"");
+    }
 }
-
-
-
-
-
-
-
-
-        public class MainActivity extends Activity {
-            private CheckBox
-                    checkBox;
-            private TextView messageDisplay;
-            private BoxListener listenCheckBox;
-            protected void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_main);
-                checkbox = findViewById(R.id.checkBox);
-                messageDisplay =findViewById(R.id.message);
-                listenCheckBox = new BoxListener();
-                checkBox.setOnClickListener(listenCheckBox);
-            }
-            private class BoxListener implements OnClickListener {
-                public void onClick(View v) {
-                    if(checkBox.isChecked()) {
-                        messageDisplay.setText(“Checked!”);
-                    } else {
-                        messageDisplay.setText(“Not checked.”);
-                    }
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

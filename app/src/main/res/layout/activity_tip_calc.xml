@@ -25,6 +25,7 @@
         android:id="@+id/BillAmmo_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/Hello_statement"
         android:ems="8"
@@ -43,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@id/BillAmmo_input"
         android:ems="8"
         android:inputType="numberDecimal" />
@@ -59,9 +61,19 @@
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textseekbar"
+        android:layout_below="@id/SeekbarDisplay"
         android:layout_centerHorizontal="true"
-        android:id="@+id/seekbar" />
+        android:id="@+id/seekbar"
+        android:max="40"
+        android:progress="15"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SeekbarDisplay"
+        android:layout_below="@+id/textseekbar"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -105,6 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@id/splitbillText"
         android:ems="8"
         android:inputType="numberDecimal" />
@@ -114,6 +127,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/YouOwe_Text"
         android:layout_toEndOf="@id/YouOwe_Text"
         android:layout_below="@id/TipAmmo_output"
         android:ems="8"
@@ -127,7 +142,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:text="@string/Calculatebutton"
-        android:onClick="Calculate"/>
+        android:onClick="buttonPressed"/>
 
 
 </RelativeLayout>
