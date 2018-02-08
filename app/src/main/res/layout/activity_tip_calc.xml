@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.tip_calc3.TipCalc">
+    tools:context="com.example.android.tip_calc3.TipCalc"
+    android:background="#7722">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,7 +13,6 @@
         android:textSize="26sp"
         android:layout_centerHorizontal="true"
         android:id="@+id/Hello_statement" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,6 @@
         android:text="@string/Bill_ammount_text"
         android:textSize="27sp"
         android:id="@+id/BillAmmo_text" />
-
     <EditText
         android:id="@+id/BillAmmo_input"
         android:layout_width="wrap_content"
@@ -30,7 +29,6 @@
         android:layout_below="@id/Hello_statement"
         android:ems="8"
         android:inputType="numberDecimal" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +36,6 @@
         android:text="@string/PartySize_text"
         android:textSize="30sp"
         android:id="@+id/PartySize_text" />
-
     <EditText
         android:id="@+id/PartySize_input"
         android:layout_width="wrap_content"
@@ -48,7 +45,6 @@
         android:layout_below="@id/BillAmmo_input"
         android:ems="8"
         android:inputType="numberDecimal" />
-
     <TextView
         android:id="@+id/textseekbar"
         android:layout_width="match_parent"
@@ -57,24 +53,25 @@
         android:text="@string/textseekbar"
         android:gravity="center"
         android:textSize="35sp" />
-
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/SeekbarDisplay"
         android:layout_centerHorizontal="true"
         android:id="@+id/seekbar"
-        android:max="40"
-        android:progress="15"
-        />
-
+        android:max="50"
+        android:progress="15" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SeekbarDisplay"
         android:layout_below="@+id/textseekbar"
-        />
-
+        android:selectAllOnFocus="true"
+        android:text="@string/SeekbarDisplay"
+        android:textSize="20sp"
+        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +79,6 @@
         android:id="@+id/splitbillText"
         android:layout_below="@id/seekbar"
         android:textSize="40sp" />
-
     <CheckBox
         android:id="@+id/Splitbill_checkbox"
         android:layout_width="wrap_content"
@@ -95,45 +91,37 @@
         android:layout_marginRight="34dp"
         android:scaleX="2"
         android:scaleY="2" />
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:id="@+id/Tipoutputtext"
         android:layout_below="@id/Splitbill_checkbox"
         android:text="@string/Tipoutputtext"
         android:textSize="26sp"/>
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:id="@+id/YouOwe_Text"
         android:layout_below="@id/Tipoutputtext"
         android:text="@string/YouOwe_Text"
         android:textSize="26sp"/>
-
-    <EditText
+    <TextView
         android:id="@+id/TipAmmo_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/Tipoutputtext"
         android:layout_below="@id/splitbillText"
-        android:ems="8"
-        android:inputType="numberDecimal" />
-
-    <EditText
+        android:textSize="26sp"
+        android:ems="6" />
+    <TextView
         android:id="@+id/Total_payment_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/YouOwe_Text"
         android:layout_toEndOf="@id/YouOwe_Text"
         android:layout_below="@id/TipAmmo_output"
-        android:ems="8"
-        android:inputType="numberDecimal" />
-
+        android:textSize="26sp"
+        android:ems="6" />
     <Button
         android:id="@+id/Calculatebutton"
         android:layout_width="wrap_content"
@@ -142,7 +130,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:text="@string/Calculatebutton"
-        android:onClick="buttonPressed"/>
-
-
+        android:onClick="onClickBtn"/>
 </RelativeLayout>

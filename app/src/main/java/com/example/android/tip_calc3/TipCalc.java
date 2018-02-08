@@ -6,19 +6,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TipCalc extends AppCompatActivity {
 
-    private EditText Bill_input;
-    private EditText Party_input;
+    private EditText Bill;
+    private EditText Party;
+
     private SeekBar seekBar;
+    private int TipPercentValue = 15;
+    private TextView Seekbar_number;
+
     private CheckBox Splitbill_checkbox;
-    private CheckBoxlistener listenCheckbox;
-    private EditText Tip_output;
-    private EditText Total_output;
+
+
+    private TextView Tip_output;
+    private TextView Total_output;
     private Button Calculatebutton;
 
     @Override
@@ -26,35 +31,62 @@ public class TipCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip_calc);
 
-        listenCheckbox = new CheckBoxlistener();
+        Bill = (EditText) findViewById(R.id.BillAmmo_input);
+        Party = (EditText) findViewById(R.id.PartySize_input);
 
-        Bill_input = findViewById(R.id.BillAmmo_input);
-        Party_input = findViewById(R.id.PartySize_input);
-        seekBar = findViewById(R.id.seekbar);
-        Splitbill_checkbox = findViewById(R.id.Splitbill_checkbox);
-        Tip_output = findViewById(R.id.TipAmmo_output);
-        Total_output = findViewById(R.id.Total_payment_output);
-        Calculatebutton = findViewById(R.id.Calculatebutton);
+        Splitbill_checkbox = (CheckBox) findViewById(R.id.Splitbill_checkbox);
+
+        Tip_output = (TextView) findViewById(R.id.TipAmmo_output);
+        Total_output = (TextView) findViewById(R.id.Total_payment_output);
+        Calculatebutton = (Button) findViewById(R.id.Calculatebutton);
+
+        seekBar = (SeekBar) findViewById(R.id.seekbar);
+        Seekbar_number = (TextView) findViewById(R.id.SeekbarDisplay);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                Seekbar_number.setText("" + progress + "%");
+                TipPercentValue = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
 
-    public void onClick(View v){
-
-
-        double Bill = Double.parseDouble(Bill_input.getText().toString());
-        double Party = Double.parseDouble(Party_input.getText().toString());
-
-        if(Splitbill_checkbox.isChecked()) {
-
-            double Tip_output = ((Bill_input * seekBar)/Party_input);
-            double Total_output = ((Bill_input / Party_input)+Tip_output);
-        } else {
-
-            double Tip_output = (Bill_input * seekBar);
-            double Total_output = (Bill_input*(1.0 + seekBar));
+    public void onClickBtn(View v) {
+        if (Bill.getText().toString().equals("") || Bill.getText().toString().isEmpty())  {
+            Toast.makeText(this, "All Input fields must be filled", Toast.LENGTH_LONG).show();
+            return;
         }
-        Tip_output.setText(Tip_output +"");
-        Total_output.setText(Total_output +"");
+        double TotalBillInput = Double.parseDouble(Bill.getText().toString());
+        if (Party.getText().toString().equals("") || Party.getText().toString().isEmpty())  {
+            Toast.makeText(this, "All Input fields must be filled", Toast.LENGTH_LONG).show();
+            return;
+        }
+        double TotalPartyInput = Double.parseDouble(Party.getText().toString());
+        double IndividualTip = (TipPercentValue * TotalBillInput) / (100);
+        double TotalPayment;
+        double TotalTip;
+
+        if(Splitbill_checkbox.isChecked()){
+            TotalPayment = (TotalBillInput + IndividualTip) / TotalPartyInput;
+            TotalTip = IndividualTip / TotalPartyInput;
+        }else{
+            TotalPayment = TotalBillInput + IndividualTip;
+            TotalTip = IndividualTip;
+        }
+
+        Tip_output.setText(String.format("%.2f", TotalTip));
+        Total_output.setText(String.format("%.2f", TotalPayment));
     }
 }
 

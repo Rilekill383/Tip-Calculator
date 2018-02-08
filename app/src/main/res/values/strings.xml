@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Tip_Calc3</string>
     <string name="Hello_statement">Hello, this is the free converter</string>
-    <string name="Bill_ammount_text">Bill ammount($)</string>
+    <string name="Bill_ammount_text">Bill amount($)</string>
     <string name="PartySize_text">Party Quantity</string>
     <string name="textseekbar">Select Tip% Desired</string>
     <string name="splitbillText">Split Bill?</string>
-    <string name="Tipoutputtext">Tip ammount:</string>
-    <string name="YouOwe_Text">Ammount to Pay:</string>
+    <string name="Tipoutputtext">Tip quantity($):</string>
+    <string name="YouOwe_Text">Total Payment($):</string>
     <string name="Calculatebutton">Calculate</string>
-    <string name="SeekbarDisplay"></string>
+    <string name="SeekbarDisplay">15%</string>
 </resources>
